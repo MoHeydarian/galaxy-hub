@@ -2,10 +2,21 @@
 autotoc: true
 title: Processing many samples at once with collections
 ---
-**In this exercise, we will:**
-**1) Organize RNA-seq data into collections** 
-**2) Tag these (two) collections with descriptive tags**
-**3) Run FastQC on these data to get an idea of the quality of these samples**
+In this exercise, we will:
+1) Retrieve data from shared Data Libraries and import to a history
+2) Organize RNA-seq data into collections
+3) Tag these (two) collections with descriptive tags
+4) Run FastQC on these data to get an idea of the quality of these samples
+
+Getting data from Data Libraries
+Data libraries are a shared location in Galaxy for storing data and are frequently used to make data available. 
+We will be using data from the RNA-seq tutorial that will be used in Friday afternoon's workshop. 
+
+_The data provided here are part of a Galaxy tutorial that analyzes RNA-seq data from a study published by [Wu et al. in 2014](DOI:10.1101/gr.164830.113). The goal of this study was to investigate “the dynamics of occupancy and the role in gene regulation of the transcription factor Tal1, a critical regulator of hematopoiesis, at multiple stages of hematopoietic differentiation.” To this end, RNA-seq libraries were constructed from multiple mouse cell types including G1E - a GATA-null immortalized cell line derived from targeted disruption of GATA-1 in mouse embryonic stem cells - and megakaryocytes. This RNA-seq data was used to determine differential gene expression between G1E and megakaryocytes and later correlated with Tal1 occupancy. This dataset (GEO Accession: GSE51338) consists of two biological replicates, paired-end, and poly(A) selected RNA-seq libraries. Because of the long processing time for the large original files, we have downsampled the original raw data files to include only reads that align to chromosome 19 and a subset of interesting genomic loci identified by Wu et al._
+
+In Galaxy, go to _Shared Data -> Data Libraries_ and click through to the "RNA-seq" data. From here, select the eight samples corresponding to the G1E or megakaryocyte cellular stages and import them to a new history.  
+
+
 
 The introductions to dataset collections and tags in Galaxy provide the necessary background to compelte this exercise. Feel free to explore the Galaxy interface and ways to organize your data. 
 
