@@ -1,7 +1,3 @@
----
-autotoc: true
-title: Processing many samples at once with collections
----
 In this exercise, we will:
 1) Retrieve data from shared Data Libraries and import to a history
 2) Organize RNA-seq data into collections
