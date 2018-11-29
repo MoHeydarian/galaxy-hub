@@ -20,6 +20,7 @@ In Galaxy, go to _Shared Data -> Data Libraries_ and click through to the "RNA-s
 The introductions to dataset collections and tags in Galaxy provide the necessary background to compelte this exercise. Feel free to explore the Galaxy interface and ways to organize your data. 
 
 In Galaxy you perform data analyses and organize your data simply by clicking on things. If you have just a few items in your history, clicking is easy. However, in most real-world analyses you never have just a few datasets, instead you have many (sometimes thousands) and **Collections** help manage your data to minimize the amount of clicking you have to do. 
+
 |      |
 |------|
 |![](/src/tutorials/collections/smallVsLarge.png)|
