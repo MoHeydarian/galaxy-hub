@@ -4,7 +4,7 @@ In this exercise, we will:
 3) Tag these (two) collections with descriptive tags
 4) Run FastQC on these data to get an idea of the quality of these samples
 
-
+Remember to use the Computational Genomics Course [Galaxy instance](http://ecg2018.bioch.virginia.edu/galaxy/).
 
 
 Getting data from Data Libraries
