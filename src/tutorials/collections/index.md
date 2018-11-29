@@ -111,14 +111,7 @@ The following video shows the power of hashtags:
 
 <div class="embed-responsive embed-responsive-16by9"><iframe src="https://player.vimeo.com/video/216895965?portrait=0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
-## Using dataset collection tools
 
-Galaxy contains a special set of tools - **Collection operations** - designed for transforming existing collections. The following figure highlights the possibilities:
-
-|      |
-|------|
-|![](/src/tutorials/collections/collection_operations.png)|
-|<small>**Figure 8. Collection operations**. **Zip** - combines two collections as a zipper. If you, for example, have two collections representing forward and reverse reads, respectively, this tool can be used to combine them into a single paired collection. **Unzip** - performs opposite of Zip. **Filter Failed** - when running analyses on collections it is possible that some individual analyses on collection elements will fail. This tool allows you to filter out failed elements so you can continue your analysis instead of performing it again. **Flatten** - squish collection into a simple list of elements. **Filter from File** - given a file of collection element IDs reduce the collection to only a subset of elements listed in the file. **Relabel from File** - use labels in the file to change the collection element names. **Concatenate** - merge two collection tail-to-head.</small>|
 
 # Using collections - a QC example
 
@@ -130,7 +123,14 @@ How do the data look? Do any samples stand out?
 
 
 
+## Using dataset collection tools (additional reading)
 
+Galaxy contains a special set of tools - **Collection operations** - designed for transforming existing collections. The following figure highlights the possibilities:
+
+|      |
+|------|
+|![](/src/tutorials/collections/collection_operations.png)|
+|<small>**Figure 8. Collection operations**. **Zip** - combines two collections as a zipper. If you, for example, have two collections representing forward and reverse reads, respectively, this tool can be used to combine them into a single paired collection. **Unzip** - performs opposite of Zip. **Filter Failed** - when running analyses on collections it is possible that some individual analyses on collection elements will fail. This tool allows you to filter out failed elements so you can continue your analysis instead of performing it again. **Flatten** - squish collection into a simple list of elements. **Filter from File** - given a file of collection element IDs reduce the collection to only a subset of elements listed in the file. **Relabel from File** - use labels in the file to change the collection element names. **Concatenate** - merge two collection tail-to-head.</small>|
 # The future
 
 The future improvements of dataset collections will allow representing complex experiments such as the ones shown in the two previous figures in a single collection.
