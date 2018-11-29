@@ -2,21 +2,10 @@
 autotoc: true
 title: Processing many samples at once with collections
 ---
-
-<div class="alert alert-info" role="alert"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Note: we assume that the person reading this tutorial
-<hr>
-	<ul>
-	    <li>has a basic understanding of how Galaxy works (if you don't, please see [Galaxy 101](/tutorials/g101) tutorial)</li>
-		<li>has an account in Galaxy ([see this](/tutorials/g101/#setting-up-galaxy-account) if you don't)</li>
-		<li>has their browser configured as described [here](/tutorials/g101/#getting-your-display-sorted-out)</li>
-	</ul>
-</div>
-
-
-**In this exercise, we will:
-1) Organize RNA-seq data into collections 
-2) Tag these (two) collections with descriptive tags
-3) Run FastQC on these data to get an idea of the quality of these samples**
+**In this exercise, we will:**
+**1) Organize RNA-seq data into collections** 
+**2) Tag these (two) collections with descriptive tags**
+**3) Run FastQC on these data to get an idea of the quality of these samples**
 
 The introductions to dataset collections and tags in Galaxy provide the necessary background to compelte this exercise. Feel free to explore the Galaxy interface and ways to organize your data. 
 
