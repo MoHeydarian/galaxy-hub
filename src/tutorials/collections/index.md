@@ -8,6 +8,9 @@ In this exercise, we will:
 3) Tag these (two) collections with descriptive tags
 4) Run FastQC on these data to get an idea of the quality of these samples
 
+
+
+
 Getting data from Data Libraries
 Data libraries are a shared location in Galaxy for storing data and are frequently used to make data available. 
 We will be using data from the RNA-seq tutorial that will be used in Friday afternoon's workshop. 
