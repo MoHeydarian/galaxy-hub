@@ -12,9 +12,15 @@ title: Processing many samples at once with collections
 	</ul>
 </div>
 
+
+**In this exercise, we will:
+1) Organize RNA-seq data into collections 
+2) Tag these (two) collections with descriptive tags
+3) Run FastQC on these data to get an idea of the quality of these samples**
+
+The introductions to dataset collections and tags in Galaxy provide the necessary background to compelte this exercise. Feel free to explore the Galaxy interface and ways to organize your data. 
+
 In Galaxy you perform data analyses and organize your data simply by clicking on things. If you have just a few items in your history, clicking is easy. However, in most real-world analyses you never have just a few datasets, instead you have many (sometimes thousands) and **Collections** help manage your data to minimize the amount of clicking you have to do. 
-
-
 |      |
 |------|
 |![](/src/tutorials/collections/smallVsLarge.png)|
@@ -77,31 +83,7 @@ This is important because the fact that `-f` and `-r` differentiate forward and 
 |![](/src/tutorials/collections/creating_paired_list.png)|
 |<small>**Figure 5. Creating a list (collection) or datasets** (To see a higher resolution image right-click [here](/src/tutorials/collections/creating_paired_list.pdf)). The starting steps are identical to steps A through C of the previous example (Figure 4). **A**. Here choose "Build List of Dataset pairs" to open dataset collection creator. **B**. In the left text box (highlighted in red) enter `-f`. These two characters distinguish *forward* datasets in our case. Once this is done matching datasets will appear underneath the text field. In the right text box (highlighted in green) enter `-r`. These two characters distinguish *reverse* datasets in our case. Again, matching datasets will appear under the box. Finally, click "Auto-pair". **C**. Auto-pairing will form dataset pairs. At this point scroll to the bottom of the form, name the collection, and click "Create list". **D**. A new collection will appear in your history. Clicking the collection will reveal its content. **E**. In this example the collection consists of three pairs. **F**. Clicking on any pair will reveal forward and reverse sequence datasets. </small>|
 
-## Uploading data directly into collections
 
-You can upload data into collections directly bypassing the need to upload datasets into history first.
-
-### Uploading from local disk
-
-If you have datasets stored on your computer, you can upload them into collection as shown in following video. 
-
-<div class="alert alert-warning" role="alert">
-This approach only works for a relatively small (dozens) number of small (below 2GB) datasets due to limitations of web browsers.
-</div>
-
-<div class="embed-responsive embed-responsive-16by9"><iframe src="https://player.vimeo.com/video/217208139?portrait=0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
-
-### Uploading from FTP
-
-A more robust, preferred way of uploading data is through FTP. For this you need to use an FTP client (such as [FileZilla](https://filezilla-project.org/) used here) to upload data into Galaxy. Use your galaxy URL address (http://usegalaxy.org for the main site), username, and password as shown in the following video:
-
-<div class="embed-responsive embed-responsive-16by9"><iframe src="https://player.vimeo.com/video/217210779?portrait=0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
-
-### Uploading from short read archive
-
-Finally, if the data you are uploading has been deposited to the Short Read Archive ([SRA](https://www.ncbi.nlm.nih.gov/sra)) at [NCBI](https://www.ncbi.nlm.nih.gov/) use this approach: 
-
-<div class="embed-responsive embed-responsive-16by9"><iframe src="https://player.vimeo.com/video/217216264?portrait=0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # Manipulating collections
 
@@ -138,71 +120,16 @@ Galaxy contains a special set of tools - **Collection operations** - designed fo
 |![](/src/tutorials/collections/collection_operations.png)|
 |<small>**Figure 8. Collection operations**. **Zip** - combines two collections as a zipper. If you, for example, have two collections representing forward and reverse reads, respectively, this tool can be used to combine them into a single paired collection. **Unzip** - performs opposite of Zip. **Filter Failed** - when running analyses on collections it is possible that some individual analyses on collection elements will fail. This tool allows you to filter out failed elements so you can continue your analysis instead of performing it again. **Flatten** - squish collection into a simple list of elements. **Filter from File** - given a file of collection element IDs reduce the collection to only a subset of elements listed in the file. **Relabel from File** - use labels in the file to change the collection element names. **Concatenate** - merge two collection tail-to-head.</small>|
 
-# Using collections
+# Using collections - a QC example
 
 Earlier in this tutorial we demonstrated what collections are, how they can be created, and manipulated. Now let's have a short usage example. 
 
-## Collections are reduced during an analysis
+Here, we want to have a program called [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) perform summary QC on our data. 
 
-We will start with a paired collection of fastq reads, map them to the human genome, and process mapping results. In this example the collection is being *reduced* to a single dataset as we progress through the analysis pipeline:
+How do the data look? Do any samples stand out? 
 
-|      |
-|------|
-|![](/src/tutorials/collections/collection_reduction.png)|
-|<small>**Figure 9. An example of an analysis using collections**. Here analysis begins with a paired collection containing fastq datasets. The entire collection is mapped using BWA (or Bowtie2). The maping step produces another collection as output but this collection is no longer paired (mappers use paired fastq reads to generate a single BAM dataset from each pair). Instead it is a simple list of BAM files. During mapping (see below and also see [this tutorial](/tutorials/ngs/#read-groups)) we set read groups within individual BAM datasets. This effectively labels each read with its origin (e.g., we know that read came from, say, *sample 1*). Because of this we can merge the entire collection of BAM files into a single BAM dataset. Thus - we start with a collection and finish with just a single dataset.</small>|
 
-We we start with loading a collection into history using any of the methods that have been discussed above:
 
-|      |
-|------|
-|![](/src/tutorials/collections/collection_use1.png)|
-|<small>**Figure 10. A collection** is loaded into Galaxy's history.</small>|
-
-Next, we will tag this collection:
-
-|      |
-|------|
-|![](/src/tutorials/collections/collection_use2.png)|
-|<small>**Figure 11. A tagged collection**. The tag "controls" is added as previously described.</small>|
-
-At this point we map the contents of the collection using **NGS: Mapping &rarr; BWA-MEM**:
-
-|      |
-|------|
-|![](/src/tutorials/collections/collection_use3.png)|
-|<small>**Figure 12. Mapping a collection**. Set input type (red arrow) to "Paired Collection". This will allow selecting a collection from the history. Set readgroup dropdown to "Set readgroups (SAM/BAM specifications" (green arrow) and switch the three "Auto-assign" controls to "Yes" (blue arrows). Run the tool.</small>|
-
-Mapping produces another collection containing a list of BAM datasets produced by BWA. In other words every time a tool is run using a collection as input, Galaxy actually runs the tool *N* times on *N* collection elements (or a dataset pair in the case of paired data) and bundles outputs into an output collection. 
-
-|      |
-|------|
-|![](/src/tutorials/collections/collection_use4.png)|
-|<small>**Figure 13. Mapping result**. Running BWA will produce another collection in the history. **Note** that tag has propagated onto this collection. This collection contains a list of BAM datasets.</small>|
-
-Since we have assigned readgroup information while running BWA we can now merge a collection into a single BAM dataset using **NGS: Picard &rarr; MergeSam**:
-
-|      |
-|------|
-|![](/src/tutorials/collections/collection_use5.png)|
-|<small>**Figure 14. Merging collection** into a single BAM dataset. **Note** that in order to make collections visible to the tool interface you need to click on the folder <i class="far fa-folder" aria-hidden="true"></i> button.</small>
-
-We have now aligned our reads and merged them to a single file for downstream analysis. Using collections allowed us to execute these operations on groups of samples with minimal clicking.
-
-## Other analysis outlines
-
-Going forward collections will become the dominant way to represent and manage data within Galaxy. Here are some examples of how collections can be used in typical NGS applications. The first example (below) provides a high level summary of how collections will help performing a typical RNA-seq analysis of differential gene expression:
-
-|      |
-|------|
-|![](/src/tutorials/collections/collection_rna.png)|
-|<small>**Figure 15. Example of RNA-seq analysis**. This example starts with multiple paired end datasets representing two conditions with several replicates. The analysis proceeds by creating two collections that are analyzed in parallel (the tagging feature described above should make this analysis very straightforward), where reads are mapped to a genome and the mapped reads are then counted upstream of the DeSeq2 tool, whcih reduces the collections into a single table listing changes in gene expression between the two conditions (see [RNA seq tutorial](/tutorials/nt_rnaseq/) for a comprehensive explanation).</small>|
-
-The next analysis highlights main steps if initial processing of ChIP-seq data:
-
-|      |
-|------|
-|![](/src/tutorials/collections/collection_chip.png)|
-|<small>**Figure 16. Example of ChIP-eq analysis**. Here three collections are used to represent data for two ChIP experiments (TF1 and TF2) as well as input DNA control data. The peak calling is performed on individual pairs of TF and input data as well as on combination of all datasets.</small>|
 
 # The future
 
